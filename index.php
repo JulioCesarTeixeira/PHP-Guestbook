@@ -14,7 +14,7 @@ session_start();
 $allPosts = "all_posts.txt";
 const MAX_POSTS = 20;
 
-if($_SERVER["REQUEST_METHOD"] === "POST") {
+if(isset($_POST['run'])) {
     if(!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['author'])){
         $title = test_input($_POST['title']);
         $content = test_input($_POST['content']);
@@ -35,6 +35,7 @@ if(!isset($_POST['run'])){
 
 if(isset($_POST['clear'])){
     session_destroy();
+    $title = $content = $author = "";
     header('Location: index.php');
     exit;
 }
